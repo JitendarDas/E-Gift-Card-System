@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Flask MySQL</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <style>
+    main {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .header
+    {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Welcome to the Dashboard </h1>
+        {% if user %}
+            <section class="user-info">
+                <h3>User Information</h3>
+                <ul>
+                    <li>Id: {{ user[0] }}</li>
+                    <li>Name: {{ user[1] }}</li>
+                    <li>Email: {{ user[2] }}</li>
+                </ul>
+
+                <!-- <div class="btn-group"> -->
+                    <a href="{{ url_for('logout') }}" class="btn btn-dark">Logout</a>
+                    
+                    <a href="{{ url_for('add_gift_card', merchant_id=user[0]) }}" class="btn btn-dark">Add Gift Card</a>
+                    <a href="{{ url_for('merchant_requests', merchant_id=user[0]) }}" class="btn btn-dark">See Gift Card Request</a>
+                    <a href="{{ url_for('merchant_transactions', merchant_id=user[0]) }}" class="btn btn-dark">Transaction</a>
+                <!-- </div> -->
+            </section>
+        {% else %}
+            <p>No user information available.</p>
+        {% endif %}
+    </main>
+    
+</body>
+</html>

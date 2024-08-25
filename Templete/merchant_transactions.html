@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Merchant Transactions</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .transaction-history {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container mt-4">
+        <h1 class="mb-4">Transaction History</h1>
+
+        <!-- Check if there are transactions -->
+        {% if transactions %}
+        <!-- Display transactions in a table -->
+        <div class="transaction-history">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Transaction Date</th>
+                        <th>Transaction Amount</th>
+                        <th>Gift Card</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through transactions -->
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction[0] }}</td>
+                        <td>{{ transaction[1] }}</td>
+                        <td>${{ transaction[2] }}</td>
+                        <td>{{ transaction[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p>No transactions found.</p>
+        {% endif %}
+
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
